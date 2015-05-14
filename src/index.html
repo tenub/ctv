@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="utf-8"/>
+  <title>cTV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"/>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/> -->
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+  <script src="assets/js/dirPagination.js"></script>
+  <script src="assets/js/main.js"></script>
+</head>
+<body ng-controller="schedule">
+  <ul class="schedule">
+    <!-- <li ng-repeat="day in filtered" class="day"> -->
+    <li dir-paginate="day in schedule | itemsPerPage: 1" class="day">
+      <h1>{{day.attr}}</h1>
+      <ul>
+        <li ng-repeat="time in day.time" class="time">
+          <h2>{{time.attr}}</h2>
+          <ul>
+            <li ng-repeat="show in time.show" class="show">
+              <ul>
+                <li><a href="http://services.tvrage.com/feeds/showinfo.php?sid={{show.sid}}">{{show.name}}</a></li>
+                <li>{{show.network}}</li>
+                <li>{{show.title}}</li>
+                <li><a href="{{show.link}}">{{show.ep}}</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <dir-pagination-controls></dir-pagination-controls>
+      <!-- <pagination boundary-links="true" max-size="5" items-per-page="itemsPerPage" total-items="schedule.length" ng-model="currentPage" ng-change="filterSchedule()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
+    </li>
+  </ul>
+</body>
+</html>
