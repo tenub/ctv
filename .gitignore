@@ -2,6 +2,7 @@
 build/
 dist/
 node_modules/
+.DS_Store
 *.log
 schedule.xml
 schedule.json
